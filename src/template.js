@@ -59,14 +59,14 @@ function generateTeam(teamData) {
 
   cardsGenerated.push(...teamData.filter((employee) => employee.getRole() === "Manager").map((manager) => managerCard(manager)));
 
-  console.log(teamData[0].getRole());
-  console.log(teamData.filter((employee) => employee.getRole() === "Manager"));
+  // console.log(teamData[0].getRole());
+  // console.log(teamData.filter((employee) => employee.getRole() === "Manager"));
 
   cardsGenerated.push(...teamData.filter((employee) => employee.getRole() === "Engineer").map((engineer) => engineerCard(engineer)));
 
   cardsGenerated.push(...teamData.filter((employee) => employee.getRole() === "Intern").map((intern) => internCard(intern)));
 
-  console.log(cardsGenerated);
+  // console.log(cardsGenerated);
   return cardsGenerated.join("");
 }
 
