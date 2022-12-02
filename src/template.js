@@ -57,13 +57,17 @@ function generateTeam(teamData) {
   //Array to keep track of cards that'll be created
   const cardsGenerated = [];
 
-  cardsGenerated.push(teamData.filter((employee) => employee.getRole() === "Manager").map((manager) => managerCard(manager)));
+  cardsGenerated.push(...teamData.filter((employee) => employee.getRole() === "Manager").map((manager) => managerCard(manager)));
 
-  cardsGenerated.push(teamData.filter((employee) => employee.getRole() === "Engineer").map((engineer) => engineerCard(engineer)));
+  console.log(teamData[0].getRole());
+  console.log(teamData.filter((employee) => employee.getRole() === "Manager"));
 
-  cardsGenerated.push(teamData.filter((employee) => employee.getRole() === "Intern").map((intern) => internCard(intern)));
+  cardsGenerated.push(...teamData.filter((employee) => employee.getRole() === "Engineer").map((engineer) => engineerCard(engineer)));
 
-  return cardsGenerated.join();
+  cardsGenerated.push(...teamData.filter((employee) => employee.getRole() === "Intern").map((intern) => internCard(intern)));
+
+  console.log(cardsGenerated);
+  return cardsGenerated.join("");
 }
 
 //Export the template to make it available anywhere w/ all the HTML
@@ -99,7 +103,7 @@ module.exports = (teamData) => {
     </header>
     <main class="container d-flex flex-wrap justify-content-center align-content-center">
     
-    // Update the html with the cards generated 
+
     ${generateTeam(teamData)}
       </main>
     <script

@@ -20,7 +20,7 @@ const roleCheckQuestion = [
   },
 ];
 
-//Checks the role to added to be added
+//Checks the role and the questions to show the user
 function roleCheck() {
   inquirer.prompt(roleCheckQuestion).then((response) => {
     if (response.role === "Engineer") {
@@ -30,6 +30,16 @@ function roleCheck() {
     } else {
       writeHTML();
     }
+
+    // const engRole = response.role === "Engineer";
+    // const intRole = response.role === "Intern";
+
+    // while (engRole || intRole) {
+    //   console.log(`true`);
+
+    //   engRole && engineerCheck();
+    // }
+    // roleCheck();
   });
 }
 
@@ -39,6 +49,7 @@ function engineerCheck() {
     const engineerClass = new Engineer(response.name, response.id, response.email, response.gitHub);
 
     employees.push(engineerClass);
+    roleCheck();
   });
 }
 
@@ -51,12 +62,6 @@ function internCheck() {
   });
 }
 
-function writeHTML() {
-  console.log(employees);
-  fs.writeFileSync(htmlFile, generateTeam(employees), "utf-8");
-  console.log(`Your team profile is generated !!`);
-}
-
 //Creates manager class and pushes it to the employees arr
 function initManagerQuestions() {
   inquirer.prompt(managerQuestions).then((response) => {
@@ -64,6 +69,13 @@ function initManagerQuestions() {
     employees.push(managerClass);
     roleCheck();
   });
+}
+
+// console.log(employees);
+
+function writeHTML() {
+  fs.writeFileSync(htmlFile, generateTeam(employees), "utf-8");
+  console.log(`Your team profile is generated !!`);
 }
 
 initManagerQuestions();
