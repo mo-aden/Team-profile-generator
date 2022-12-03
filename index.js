@@ -30,16 +30,6 @@ function roleCheck() {
     } else {
       writeHTML();
     }
-
-    // const engRole = response.role === "Engineer";
-    // const intRole = response.role === "Intern";
-
-    // while (engRole || intRole) {
-    //   console.log(`true`);
-
-    //   engRole && engineerCheck();
-    // }
-    // roleCheck();
   });
 }
 
@@ -70,8 +60,6 @@ function initManagerQuestions() {
     roleCheck();
   });
 }
-
-// console.log(employees);
 
 function writeHTML() {
   fs.writeFileSync(htmlFile, generateTeam(employees), "utf-8");
